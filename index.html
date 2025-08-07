@@ -524,7 +524,7 @@
 <script>
   let generatedReport = '';
 
-  // Auto-fill da data atual
+  // Auto-fill da data atual e carregar dados salvos
   document.addEventListener('DOMContentLoaded', function() {
     const today = new Date();
     const dateString = today.toISOString().split('T')[0];
@@ -532,12 +532,43 @@
     
     document.getElementById('dia').value = dateString;
     document.getElementById('horario').value = timeString;
+    
+    // Carregar dados salvos do médico
+    loadMedicoData();
   });
 
-  // Abrir modal
+  // Salvar dados do médico no localStorage
+  function saveMedicoData() {
+    const medicoNome = document.getElementById('medicoNome').value.trim();
+    const medicoId = document.getElementById('medicoId').value.trim();
+    
+    if (medicoNome) {
+      localStorage.setItem('upa_medico_nome', medicoNome);
+    }
+    if (medicoId) {
+      localStorage.setItem('upa_medico_id', medicoId);
+    }
+  }
+
+  // Carregar dados salvos do médico
+  function loadMedicoData() {
+    const savedNome = localStorage.getItem('upa_medico_nome');
+    const savedId = localStorage.getItem('upa_medico_id');
+    
+    if (savedNome) {
+      document.getElementById('medicoNome').value = savedNome;
+    }
+    if (savedId) {
+      document.getElementById('medicoId').value = savedId;
+    }
+  }
+
+  // Abrir modal e carregar dados salvos
   document.getElementById("novoRelatorioBtn").addEventListener("click", () => {
     const modal = new bootstrap.Modal(document.getElementById('relatorioModal'));
     modal.show();
+    // Recarregar dados quando modal abrir
+    setTimeout(() => loadMedicoData(), 100);
   });
 
   function showAlert(message, type = 'success') {
@@ -564,6 +595,9 @@
   document.getElementById("relatorioForm").addEventListener("submit", e => {
     e.preventDefault();
 
+    // Salvar dados do médico antes de gerar relatório
+    saveMedicoData();
+
     const medicoNome = document.getElementById("medicoNome").value.trim();
     const idMedico = document.getElementById("medicoId").value.trim();
     const nomePaciente = document.getElementById("nomePaciente").value.trim();
@@ -574,35 +608,24 @@
     const dia = document.getElementById("dia").value.trim();
 
     // Formatar relatório
-    generatedReport = `**Novo Relatório de Consulta Médica**
+    generatedReport = `**Relatório de Consulta Médica**
 
-👨‍⚕️ **Médico Responsável**
-${medicoNome}
+Nome Medico:             Id Medico:
+**${medicoNome}**        **${idMedico}**
+Nome Paciente:           Id Paciente:
+**${nomePaciente}**      **${idPaciente}**
 
-🆔 **ID Médico**
-\`${idMedico}\`
 
-👤 **Nome do Paciente**
-**${nomePaciente}**
+**Sintomas Apresentados**
 
-🆔 **ID Paciente**
-\`${idPaciente}\`
-
-🤒 **Sintomas Apresentados**
-\`\`\`
 ${sintomas}
-\`\`\`
 
-💊 **Medicamentos Prescritos**
-\`\`\`
+**Medicamentos Prescritos**
+
 ${medicamentos}
-\`\`\`
 
-🕒 **Horário da Consulta**
-**${horario}**
-
-📅 **Data da Consulta**
-**${dia}**`;
+Data e Hora Atendimento:
+**${dia}**   **${horario}**`;
 
     // Mostrar preview
     document.getElementById('previewArea').textContent = generatedReport;
@@ -640,6 +663,10 @@ ${medicamentos}
       showAlert("❌ Erro ao copiar para clipboard. Tente novamente.", 'danger');
     }
   });
+
+  // Salvar dados do médico quando os campos mudam
+  document.getElementById('medicoNome').addEventListener('blur', saveMedicoData);
+  document.getElementById('medicoId').addEventListener('blur', saveMedicoData);
 
   // Validação em tempo real
   document.querySelectorAll('.form-control, .form-select').forEach(input => {
