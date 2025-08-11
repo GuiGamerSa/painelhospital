@@ -608,7 +608,9 @@
     const dia = document.getElementById("dia").value.trim();
 
     // Formatar relatório
-    generatedReport = `**Relatório de Consulta Médica**
+    generatedReport = `
+————————————« :UPA: »————————————
+**Relatório de Consulta Médica**
 
 👨‍⚕️ Nome Medico:          🆔 Id Medico:
 **${medicoNome}**     |   **${idMedico}**
@@ -625,7 +627,9 @@ ${sintomas}
 ${medicamentos}
 
 🕒 Data e Hora Atendimento:
-**${dia}**   **${horario}**`;
+**${dia}**   **${horario}**
+————————————« :UPA: »————————————
+`;
 
     // Mostrar preview
     document.getElementById('previewArea').textContent = generatedReport;
