@@ -397,35 +397,35 @@
           <form id="exameForm">
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="exameMedicoNome" class="form-label">
-                  <i class="fas fa-user-md"></i>
-                  Nome do Médico
+                <label for="exameDelegadoNome" class="form-label">
+                  <i class="fas fa-user-shield"></i>
+                  Nome do Delegado
                 </label>
-                <input type="text" class="form-control" id="exameMedicoNome" placeholder="Nome do médico" required />
+                <input type="text" class="form-control" id="exameDelegadoNome" placeholder="Nome do delegado" required />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="exameMedicoId" class="form-label">
+                <label for="exameDelegadoId" class="form-label">
                   <i class="fas fa-id-badge"></i>
-                  ID Médico
+                  ID Delegado
                 </label>
-                <input type="text" class="form-control" id="exameMedicoId" placeholder="ID do Médico" required />
+                <input type="text" class="form-control" id="exameDelegadoId" placeholder="ID do Delegado" required />
               </div>
             </div>
 
             <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="pacienteId" class="form-label">
-                  <i class="fas fa-hashtag"></i>
-                  ID do Paciente
-                </label>
-                <input type="number" class="form-control" id="pacienteId" placeholder="ID do paciente" required />
-              </div>
               <div class="col-md-6 mb-3">
                 <label for="nomeCompleto" class="form-label">
                   <i class="fas fa-user-circle"></i>
                   Nome Completo
                 </label>
                 <input type="text" class="form-control" id="nomeCompleto" placeholder="Nome completo do paciente" required />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="pacienteId" class="form-label">
+                  <i class="fas fa-hashtag"></i>
+                  ID do Paciente
+                </label>
+                <input type="number" class="form-control" id="pacienteId" placeholder="ID do paciente" required />
               </div>
             </div>
 
@@ -442,7 +442,7 @@
                   <i class="fas fa-phone"></i>
                   Telefone
                 </label>
-                <input type="tel" class="form-control" id="telefone" placeholder="(00) 00000-0000" required />
+                <input type="tel" class="form-control" id="telefone" placeholder="000000" required />
               </div>
             </div>
 
@@ -606,6 +606,15 @@
                         placeholder="Liste os medicamentos prescritos e dosagens..." required></textarea>
             </div>
 
+            <div class="mb-3">
+              <label for="situacaoOcorrido" class="form-label">
+                <i class="fas fa-info-circle"></i>
+                Situação do Ocorrido
+              </label>
+              <textarea class="form-control" id="situacaoOcorrido" rows="3" 
+                        placeholder="Descreva a situação do ocorrido..." required></textarea>
+            </div>
+
             <div class="d-flex gap-2">
               <button type="submit" class="btn btn-submit flex-fill">
                 <i class="fas fa-eye me-2"></i>
@@ -659,45 +668,55 @@
     loadMedicoData();
   });
 
-  // Salvar dados do médico no localStorage
+  // Salvar dados do médico e delegado no localStorage
   function saveMedicoData() {
     const medicoNome = document.getElementById('medicoNome') ? document.getElementById('medicoNome').value.trim() : '';
     const medicoId = document.getElementById('medicoId') ? document.getElementById('medicoId').value.trim() : '';
     
-    const exameMedicoNome = document.getElementById('exameMedicoNome') ? document.getElementById('exameMedicoNome').value.trim() : '';
-    const exameMedicoId = document.getElementById('exameMedicoId') ? document.getElementById('exameMedicoId').value.trim() : '';
+    const delegadoNome = document.getElementById('exameDelegadoNome') ? document.getElementById('exameDelegadoNome').value.trim() : '';
+    const delegadoId = document.getElementById('exameDelegadoId') ? document.getElementById('exameDelegadoId').value.trim() : '';
     
-    const nome = medicoNome || exameMedicoNome;
-    const id = medicoId || exameMedicoId;
-    
-    if (nome) {
-      localStorage.setItem('upa_medico_nome', nome);
+    // Salvar dados do médico
+    if (medicoNome) {
+      localStorage.setItem('upa_medico_nome', medicoNome);
     }
-    if (id) {
-      localStorage.setItem('upa_medico_id', id);
+    if (medicoId) {
+      localStorage.setItem('upa_medico_id', medicoId);
+    }
+
+    // Salvar dados do delegado
+    if (delegadoNome) {
+      localStorage.setItem('upa_delegado_nome', delegadoNome);
+    }
+    if (delegadoId) {
+      localStorage.setItem('upa_delegado_id', delegadoId);
     }
   }
 
-  // Carregar dados salvos do médico
+  // Carregar dados salvos do médico e delegado
   function loadMedicoData() {
-    const savedNome = localStorage.getItem('upa_medico_nome');
-    const savedId = localStorage.getItem('upa_medico_id');
+    // Carregar dados do médico
+    const savedMedicoNome = localStorage.getItem('upa_medico_nome');
+    const savedMedicoId = localStorage.getItem('upa_medico_id');
     
-    if (savedNome) {
-      if (document.getElementById('medicoNome')) {
-        document.getElementById('medicoNome').value = savedNome;
-      }
-      if (document.getElementById('exameMedicoNome')) {
-        document.getElementById('exameMedicoNome').value = savedNome;
-      }
+    // Carregar dados do delegado
+    const savedDelegadoNome = localStorage.getItem('upa_delegado_nome');
+    const savedDelegadoId = localStorage.getItem('upa_delegado_id');
+    
+    // Preencher dados do médico
+    if (savedMedicoNome && document.getElementById('medicoNome')) {
+      document.getElementById('medicoNome').value = savedMedicoNome;
     }
-    if (savedId) {
-      if (document.getElementById('medicoId')) {
-        document.getElementById('medicoId').value = savedId;
-      }
-      if (document.getElementById('exameMedicoId')) {
-        document.getElementById('exameMedicoId').value = savedId;
-      }
+    if (savedMedicoId && document.getElementById('medicoId')) {
+      document.getElementById('medicoId').value = savedMedicoId;
+    }
+    
+    // Preencher dados do delegado
+    if (savedDelegadoNome && document.getElementById('exameDelegadoNome')) {
+      document.getElementById('exameDelegadoNome').value = savedDelegadoNome;
+    }
+    if (savedDelegadoId && document.getElementById('exameDelegadoId')) {
+      document.getElementById('exameDelegadoId').value = savedDelegadoId;
     }
   }
 
@@ -747,6 +766,7 @@
     const idPaciente = document.getElementById("idPaciente").value.trim();
     const sintomas = document.getElementById("sintomas").value.trim();
     const medicamentos = document.getElementById("medicamentos").value.trim();
+    const situacaoOcorrido = document.getElementById("situacaoOcorrido").value.trim();
     const horario = document.getElementById("horario").value.trim();
     const dia = document.getElementById("dia").value.trim();
 
@@ -769,6 +789,10 @@ ${sintomas}
 
 ${medicamentos}
 
+ℹ️ **Situação do Ocorrido**
+
+${situacaoOcorrido}
+
 🕒 Data e Hora Atendimento:
 **${dia}**   **${horario}**
 ————————————« :UPA: »————————————
@@ -789,10 +813,10 @@ ${medicamentos}
     // Salvar dados do médico antes de gerar
     saveMedicoData();
 
-    const medicoNome = document.getElementById("exameMedicoNome").value.trim();
-    const medicoId = document.getElementById("exameMedicoId").value.trim();
-    const pacienteId = document.getElementById("pacienteId").value.trim();
+    const delegadoNome = document.getElementById("exameDelegadoNome").value.trim();
+    const delegadoId = document.getElementById("exameDelegadoId").value.trim();
     const nomeCompleto = document.getElementById("nomeCompleto").value.trim();
+    const pacienteId = document.getElementById("pacienteId").value.trim();
     const idade = document.getElementById("idade").value.trim();
     const telefone = document.getElementById("telefone").value.trim();
     const estadoCivil = document.getElementById("estadoCivil").value.trim();
@@ -806,18 +830,18 @@ ${medicamentos}
 ————————————« :UPA: »————————————
 **SOLICITAÇÃO - EXAME PSICOTÉCNICO**
 
-**Nome Médico:** ${medicoNome}
-**ID Médico:** ${medicoId}
+👮‍♂️ **Nome Delegado:** ${delegadoNome}
+🆔 **ID Delegado:** ${delegadoId}
 
-**ID:** ${pacienteId}
-**Nome completo:** ${nomeCompleto}
-**Idade:** ${idade}
-**Telefone:** ${telefone}
-**Estado Civil:** ${estadoCivil}
-**Trabalho:** ${trabalho}
-**Cargo:** ${cargo}
-**Residência:** ${residencia}
-**Situação Exame:** ${situacaoExame}
+👤 **Nome completo:** ${nomeCompleto}
+🆔 **ID:** ${pacienteId}
+🎂 **Idade:** ${idade}
+📱 **Telefone:** ${telefone}
+💑 **Estado Civil:** ${estadoCivil}
+🏢 **Trabalho:** ${trabalho}
+💼 **Cargo:** ${cargo}
+🏠 **Residência:** ${residencia}
+💰 **Situação Exame:** ${situacaoExame}
 ————————————« :UPA: »————————————
 `;
 
@@ -876,11 +900,11 @@ ${medicamentos}
     }
   });
 
-  // Salvar dados do médico quando os campos mudam
+  // Salvar dados do médico e delegado quando os campos mudam
   document.getElementById('medicoNome').addEventListener('blur', saveMedicoData);
   document.getElementById('medicoId').addEventListener('blur', saveMedicoData);
-  document.getElementById('exameMedicoNome').addEventListener('blur', saveMedicoData);
-  document.getElementById('exameMedicoId').addEventListener('blur', saveMedicoData);
+  document.getElementById('exameDelegadoNome').addEventListener('blur', saveMedicoData);
+  document.getElementById('exameDelegadoId').addEventListener('blur', saveMedicoData);
 
   // Validação em tempo real
   document.querySelectorAll('.form-control, .form-select').forEach(input => {
