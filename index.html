@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -366,6 +367,11 @@
           <div class="stat-number">Solicitação</div>
           <div class="stat-label">Exame Psicotécnico</div>
         </button>
+        <button id="porteArmaCard" class="stat-card" type="button">
+          <i class="fas fa-shield-alt stat-icon text-warning"></i>
+          <div class="stat-number">Teste</div>
+          <div class="stat-label">Prova de Porte de Arma</div>
+        </button>
       </div>
     </div>
 
@@ -640,6 +646,373 @@
     </div>
   </div>
 
+  <!-- Modal do Teste de Porte de Arma -->
+  <div class="modal fade" id="porteArmaModal" tabindex="-1" aria-labelledby="porteArmaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="porteArmaModalLabel">
+            <i class="fas fa-shield-alt"></i>
+            Teste de Prova de Porte de Arma
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Parte 1 - Questionário -->
+          <div id="questionarioSection">
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle me-2"></i>
+              <strong>PARTE 1 - Realização do Exame</strong><br>
+              Responda todas as 12 perguntas. É necessário acertar no mínimo 8 perguntas para aprovação.
+            </div>
+
+            <form id="questionarioForm">
+              <!-- Pergunta 1 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>1.</strong> Em um momento de raiva, após ser agredido verbalmente, qual sua conduta?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta1" id="p1a" value="a">
+                  <label class="form-check-label" for="p1a">a. Resolvo a situação utilizando do porte, pois tenho o direito.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta1" id="p1b" value="b">
+                  <label class="form-check-label" for="p1b">b. Busco ajuda administrativa, reportando o comportamento.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta1" id="p1c" value="c">
+                  <label class="form-check-label" for="p1c">c. Aponto a arma, mas aguarda a polícia resolver.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta1" id="p1d" value="d">
+                  <label class="form-check-label" for="p1d">d. Certifico que o cidadão não é uma ameaça para mim e me afasto, evitando contato.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 2 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>2.</strong> Você acaba de desmaiar um assaltante em legítima defesa, o que você faz?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta2" id="p2a" value="a">
+                  <label class="form-check-label" for="p2a">a. Deixo o local sem notificar ninguém.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta2" id="p2b" value="b">
+                  <label class="form-check-label" for="p2b">b. Aciono os paramédicos e saio do local, pois me defendi.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta2" id="p2c" value="c">
+                  <label class="form-check-label" for="p2c">c. Permaneço no local, aciono a polícia e os paramédicos e relato os fatos.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta2" id="p2d" value="d">
+                  <label class="form-check-label" for="p2d">d. Retiro todos os itens do assaltante e presto socorro.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 3 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>3.</strong> A polícia ordena sua parada enquanto você está portando sua arma legalmente. Qual a sua reação?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta3" id="p3a" value="a">
+                  <label class="form-check-label" for="p3a">a. Tento fugir, pois posso explicar depois.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta3" id="p3b" value="b">
+                  <label class="form-check-label" for="p3b">b. Obedeço a ordem, explico que possuo o porte de arma e apresento a documentação.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta3" id="p3c" value="c">
+                  <label class="form-check-label" for="p3c">c. Peço para resolver na delegacia e me entrego sem explicar nada ali.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta3" id="p3d" value="d">
+                  <label class="form-check-label" for="p3d">d. Trato os polícias com ignorância, pois possuo o porte de arma e estou certo.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 4 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>4.</strong> Você presencia um roubo em andamento. O que faz?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta4" id="p4a" value="a">
+                  <label class="form-check-label" for="p4a">a. Dá voz de parada ao bandido e aguarda reação.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta4" id="p4b" value="b">
+                  <label class="form-check-label" for="p4b">b. Dispara de longe, tentando resolver a situação com violência.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta4" id="p4c" value="c">
+                  <label class="form-check-label" for="p4c">c. Atira diretamente e depois avisa a polícia que tinha porte.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta4" id="p4d" value="d">
+                  <label class="form-check-label" for="p4d">d. Aciona a polícia e aguarda para que cheguem ao local.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 5 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>5.</strong> Qual seu entendimento sobre as responsabilidades éticas e legais do porte?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta5" id="p5a" value="a">
+                  <label class="form-check-label" for="p5a">a. Sei que devo agir dentro da lei e com equilíbrio emocional.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta5" id="p5b" value="b">
+                  <label class="form-check-label" for="p5b">b. Entendo que ter porte me permite reagir como quiser.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta5" id="p5c" value="c">
+                  <label class="form-check-label" for="p5c">c. A responsabilidade é da polícia, não do portador.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta5" id="p5d" value="d">
+                  <label class="form-check-label" for="p5d">d. Devo agir pensando no meu bem estar e benefício próprio.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 6 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>6.</strong> Qual sua opinião sobre testes psicológicos para o porte?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta6" id="p6a" value="a">
+                  <label class="form-check-label" for="p6a">a. São essenciais para garantir o equilíbrio emocional.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta6" id="p6b" value="b">
+                  <label class="form-check-label" for="p6b">b. São desnecessários, pois sei o que estou fazendo.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta6" id="p6c" value="c">
+                  <label class="form-check-label" for="p6c">c. São invasivos e limitam meu direito à defesa.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta6" id="p6d" value="d">
+                  <label class="form-check-label" for="p6d">d. Garantem mais segurança aos cidadãos, pois identificam indivíduos realmente aptos ao porte.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 7 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>7.</strong> Como justifica o porte para alguém contrário à ideia?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta7" id="p7a" value="a">
+                  <label class="form-check-label" for="p7a">a. Explicaria sobre defesa pessoal e riscos da cidade.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta7" id="p7b" value="b">
+                  <label class="form-check-label" for="p7b">b. Não explicaria, pois a decisão é minha.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta7" id="p7c" value="c">
+                  <label class="form-check-label" for="p7c">c. Alegaria o direito de escolha, garantindo que o porte deve ser usado em últimos casos apenas para a segurança.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta7" id="p7d" value="d">
+                  <label class="form-check-label" for="p7d">d. Não saberia justificar.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 8 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>8.</strong> Um estranho se aproxima de você em local público, visivelmente abalado. O que você faz?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta8" id="p8a" value="a">
+                  <label class="form-check-label" for="p8a">a. Mantenho a distância, mas ofereço ajuda caso seja seguro.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta8" id="p8b" value="b">
+                  <label class="form-check-label" for="p8b">b. Retiro a arma do coldre por precaução.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta8" id="p8c" value="c">
+                  <label class="form-check-label" for="p8c">c. Me afasto sem dar atenção.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta8" id="p8d" value="d">
+                  <label class="form-check-label" for="p8d">d. O rendo e pergunto se ele precisa de alguma coisa.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 9 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>9.</strong> Alguém tenta invadir sua residência. Como reage?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta9" id="p9a" value="a">
+                  <label class="form-check-label" for="p9a">a. Chamo a polícia e me posiciono em segurança.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta9" id="p9b" value="b">
+                  <label class="form-check-label" for="p9b">b. Saio armado para enfrentar diretamente.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta9" id="p9c" value="c">
+                  <label class="form-check-label" for="p9c">c. Espero que vá embora.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta9" id="p9d" value="d">
+                  <label class="form-check-label" for="p9d">d. Saio gritando para que se renda, pois estou armado.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 10 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>10.</strong> Em situação de conflito pessoal, qual sua postura?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta10" id="p10a" value="a">
+                  <label class="form-check-label" for="p10a">a. Evito qualquer envolvimento.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta10" id="p10b" value="b">
+                  <label class="form-check-label" for="p10b">b. Resolvo de forma pacífica.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta10" id="p10c" value="c">
+                  <label class="form-check-label" for="p10c">c. Reajo com força para me impor.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta10" id="p10d" value="d">
+                  <label class="form-check-label" for="p10d">d. Tento resolver de forma pacífica.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 11 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>11.</strong> Como se prepara para a autodefesa?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta11" id="p11a" value="a">
+                  <label class="form-check-label" for="p11a">a. Confio no instinto, sem treino.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta11" id="p11b" value="b">
+                  <label class="form-check-label" for="p11b">b. Treinamento psicológico e de tiro.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta11" id="p11c" value="c">
+                  <label class="form-check-label" for="p11c">c. Só treinaria se fosse obrigado.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta11" id="p11d" value="d">
+                  <label class="form-check-label" for="p11d">d. Não preciso de treino, pois já possuo prática.</label>
+                </div>
+              </div>
+
+              <!-- Pergunta 12 -->
+              <div class="mb-4 p-3 border rounded">
+                <h6><strong>12.</strong> Como se sente sobre o uso de arma em legítima defesa?</h6>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta12" id="p12a" value="a">
+                  <label class="form-check-label" for="p12a">a. Apoio totalmente.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta12" id="p12b" value="b">
+                  <label class="form-check-label" for="p12b">b. Depende da situação (caso escolha essa, peça para descrever 1 situação aceitável e 1 inaceitável).</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta12" id="p12c" value="c">
+                  <label class="form-check-label" for="p12c">c. Sou contra, mesmo em legítima defesa.</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="pergunta12" id="p12d" value="d">
+                  <label class="form-check-label" for="p12d">d. Se o porte existe é para ser usado.</label>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-submit">
+                  <i class="fas fa-check-circle me-2"></i>
+                  Finalizar Questionário
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Parte 2 - Declaração de Responsabilidade -->
+          <div id="responsabilidadeSection" style="display: none;">
+            <div class="alert alert-warning">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              <strong>PARTE 2 - Declaração de Responsabilidade</strong>
+            </div>
+
+            <div class="p-4 border rounded bg-light">
+              <h6><strong>Termo de Responsabilidade:</strong></h6>
+              <p class="mb-4">
+                "Você compreende que o porte é pessoal, válido para armas de baixo calibre e não permite uso imprudente, 
+                devendo ser usado apenas para garantir a sua segurança e de cidadãos próximos a você, evitando utilizá-lo 
+                para interesses próprios e que seu uso inadequado poderá gerar penalidades como: prisão, perca do porte e 
+                penalidades administrativas?"
+              </p>
+
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="aceitoTermo">
+                <label class="form-check-label" for="aceitoTermo">
+                  <strong>Eu aceito os termos de responsabilidade acima descritos.</strong>
+                </label>
+              </div>
+
+              <div class="text-center">
+                <button type="button" id="continuarBtn" class="btn btn-submit" disabled>
+                  <i class="fas fa-forward me-2"></i>
+                  Continuar para Instruções Finais
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Parte 3 - Instruções Finais -->
+          <div id="instrucoesSection" style="display: none;">
+            <div class="alert alert-success">
+              <i class="fas fa-check-circle me-2"></i>
+              <strong>PARTE 3 - Instruções Finais</strong>
+            </div>
+
+            <div class="p-4 border rounded bg-light">
+              <h6><strong>Parabéns! Você foi aprovado no teste de porte de arma.</strong></h6>
+              <p class="mb-3">
+                Após concluir as devidas avaliações, informe que o porte de arma estará disponível em até 24 (vinte e quatro horas) 
+                para ser validado pelo delegado.
+              </p>
+              <p class="mb-3">
+                A obtenção da arma deve ser feita entrando em contato com o delegado, na Polícia Civil.
+              </p>
+
+              <div class="text-center">
+                <button type="button" class="btn btn-custom" data-bs-dismiss="modal">
+                  <i class="fas fa-check me-2"></i>
+                  Finalizar Processo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resultado de Reprovação -->
+          <div id="reprovacaoSection" style="display: none;">
+            <div class="alert alert-danger">
+              <i class="fas fa-times-circle me-2"></i>
+              <strong>Resultado: REPROVADO</strong>
+            </div>
+
+            <div class="p-4 border rounded bg-light text-center">
+              <h6><strong>Você foi reprovado</strong></h6>
+              <p class="mb-3">
+                Você não atingiu a pontuação mínima necessária (8 acertos). 
+                Retorne daqui a 3 dias para uma nova tentativa.
+              </p>
+
+              <div class="text-center">
+                <button type="button" class="btn btn-custom" data-bs-dismiss="modal">
+                  <i class="fas fa-calendar me-2"></i>
+                  Entendido - Retornarei em 3 dias
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="text-center py-4 mt-5">
     <div class="container">
@@ -731,6 +1104,11 @@
     const modal = new bootstrap.Modal(document.getElementById('exameModal'));
     modal.show();
     setTimeout(() => loadMedicoData(), 100);
+  });
+
+  document.getElementById("porteArmaCard").addEventListener("click", () => {
+    const modal = new bootstrap.Modal(document.getElementById('porteArmaModal'));
+    modal.show();
   });
 
   function showAlert(message, type = 'success') {
@@ -906,6 +1284,93 @@ ${situacaoOcorrido}
   document.getElementById('exameDelegadoNome').addEventListener('blur', saveMedicoData);
   document.getElementById('exameDelegadoId').addEventListener('blur', saveMedicoData);
 
+  // Sistema de Pontuação para Porte de Arma
+  const respostasCorretas = {
+    pergunta1: 'd', // Certifico que o cidadão não é uma ameaça para mim e me afasto
+    pergunta2: 'c', // Permaneço no local, aciono a polícia e os paramédicos
+    pergunta3: 'b', // Obedeço a ordem, explico que possuo o porte de arma
+    pergunta4: 'd', // Aciono a polícia e aguarda para que cheguem ao local
+    pergunta5: 'a', // Sei que devo agir dentro da lei e com equilíbrio emocional
+    pergunta6: 'd', // Garantem mais segurança aos cidadãos
+    pergunta7: 'c', // Alegaria o direito de escolha, garantindo que o porte deve ser usado em últimos casos
+    pergunta8: 'a', // Mantenho a distância, mas ofereço ajuda caso seja seguro
+    pergunta9: 'a', // Chamo a polícia e me posiciono em segurança
+    pergunta10: 'd', // Tento resolver de forma pacífica
+    pergunta11: 'b', // Treinamento psicológico e de tiro
+    pergunta12: ['a', 'b']  // Apoio totalmente OU Depende da situação
+  };
+
+  // Processar questionário de porte de arma
+  document.getElementById("questionarioForm").addEventListener("submit", e => {
+    e.preventDefault();
+    
+    let acertos = 0;
+    const totalPerguntas = 12;
+    
+    // Verificar respostas
+    for (let i = 1; i <= totalPerguntas; i++) {
+      const pergunta = `pergunta${i}`;
+      const respostaSelecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
+      
+      if (respostaSelecionada) {
+        const respostaCorreta = respostasCorretas[pergunta];
+        
+        // Verificar se é array (múltiplas respostas corretas) ou string única
+        if (Array.isArray(respostaCorreta)) {
+          if (respostaCorreta.includes(respostaSelecionada.value)) {
+            acertos++;
+          }
+        } else if (respostaSelecionada.value === respostaCorreta) {
+          acertos++;
+        }
+      }
+    }
+    
+    // Verificar se todas as perguntas foram respondidas
+    const perguntasNaoRespondidas = [];
+    for (let i = 1; i <= totalPerguntas; i++) {
+      const pergunta = `pergunta${i}`;
+      const respostaSelecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
+      if (!respostaSelecionada) {
+        perguntasNaoRespondidas.push(i);
+      }
+    }
+    
+    if (perguntasNaoRespondidas.length > 0) {
+      showAlert(`Por favor, responda todas as perguntas. Faltam as perguntas: ${perguntasNaoRespondidas.join(', ')}`, 'warning');
+      return;
+    }
+    
+    // Mostrar resultado
+    if (acertos >= 8) {
+      // Aprovado - ir para declaração de responsabilidade
+      document.getElementById('questionarioSection').style.display = 'none';
+      document.getElementById('responsabilidadeSection').style.display = 'block';
+      showAlert(`✅ Parabéns! Você acertou ${acertos} de ${totalPerguntas} perguntas e foi APROVADO!`, 'success');
+    } else {
+      // Reprovado
+      document.getElementById('questionarioSection').style.display = 'none';
+      document.getElementById('reprovacaoSection').style.display = 'block';
+      showAlert(`❌ Você acertou apenas ${acertos} de ${totalPerguntas} perguntas. Mínimo necessário: 8. Você foi REPROVADO.`, 'danger');
+    }
+  });
+
+  // Controlar habilitação do botão continuar na declaração
+  document.getElementById('aceitoTermo').addEventListener('change', function() {
+    const continuarBtn = document.getElementById('continuarBtn');
+    if (this.checked) {
+      continuarBtn.disabled = false;
+    } else {
+      continuarBtn.disabled = true;
+    }
+  });
+
+  // Continuar para instruções finais
+  document.getElementById('continuarBtn').addEventListener('click', function() {
+    document.getElementById('responsabilidadeSection').style.display = 'none';
+    document.getElementById('instrucoesSection').style.display = 'block';
+  });
+
   // Validação em tempo real
   document.querySelectorAll('.form-control, .form-select').forEach(input => {
     input.addEventListener('input', function() {
@@ -938,6 +1403,24 @@ ${situacaoOcorrido}
     
     // Remove validation classes
     document.querySelectorAll('#exameModal .form-control, #exameModal .form-select').forEach(input => {
+      input.classList.remove('is-valid', 'is-invalid');
+    });
+  });
+
+  document.getElementById('porteArmaModal').addEventListener('hidden.bs.modal', function () {
+    // Reset todas as seções
+    document.getElementById('questionarioSection').style.display = 'block';
+    document.getElementById('responsabilidadeSection').style.display = 'none';
+    document.getElementById('instrucoesSection').style.display = 'none';
+    document.getElementById('reprovacaoSection').style.display = 'none';
+    
+    // Reset formulário
+    document.getElementById('questionarioForm').reset();
+    document.getElementById('aceitoTermo').checked = false;
+    document.getElementById('continuarBtn').disabled = true;
+    
+    // Remove validation classes
+    document.querySelectorAll('#porteArmaModal .form-check-input').forEach(input => {
       input.classList.remove('is-valid', 'is-invalid');
     });
   });
